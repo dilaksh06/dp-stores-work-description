@@ -68,15 +68,16 @@
     <div class="container mt-5">
         <div class="text-center mb-5">
             <h1 class="fw-bold">🛒 dp-Store - MVP Summary</h1>
-            <p class="text-muted">A full-stack e-commerce website</p>
+            <p class="text-muted">A full-stack e-commerce website with payment integration</p>
         </div>
 
         <section class="section">
             <h2 class="section-title">📌 Project Overview</h2>
             <p>
                 <strong>dp-Store</strong> is a modern full-stack e-commerce MVP inspired by eBay. It includes a
-                user-facing shopping frontend, a robust Express backend API, and a powerful admin dashboard for managing
-                users, products, and orders.
+                user-facing shopping frontend with secure payments, a robust Express backend API, and a powerful admin
+                dashboard for managing
+                users, products, orders, and transactions.
             </p>
         </section>
 
@@ -89,6 +90,7 @@
                         <li class="list-group-item">Admin Panel: Next.js + Zustand + React Hook Form</li>
                         <li class="list-group-item">Backend: Express.js + TypeScript + Firebase</li>
                         <li class="list-group-item">Database: Firebase Firestore</li>
+                        <li class="list-group-item">Payments: Stripe API integration</li>
                     </ul>
                 </div>
                 <div class="col-md-6">
@@ -97,6 +99,7 @@
                         <li class="list-group-item">Auth: Firebase (Google, GitHub, Email)</li>
                         <li class="list-group-item">Deployment: Vercel (frontend), Google Cloud (backend)</li>
                         <li class="list-group-item">Tools: Docker, Railway, FileSaver, CSV Export</li>
+                        <li class="list-group-item">Payment Testing: Stripe test environment</li>
                     </ul>
                 </div>
             </div>
@@ -111,6 +114,8 @@
                         <li class="list-group-item">🛍️ Browse products by category</li>
                         <li class="list-group-item">💖 Wishlist & 🛒 Cart functionality</li>
                         <li class="list-group-item">🔐 Auth via Google, GitHub, Email</li>
+                        <li class="list-group-item">💳 Secure checkout with Stripe payment processing</li>
+                        <li class="list-group-item">📧 Order confirmation emails</li>
                     </ul>
                 </div>
                 <div class="col-md-6">
@@ -119,7 +124,32 @@
                         <li class="list-group-item">📦 Product CRUD with Cloudinary images</li>
                         <li class="list-group-item">👥 User management (promote/delete)</li>
                         <li class="list-group-item">🧾 CSV export, search, pagination</li>
+                        <li class="list-group-item">💰 Transaction monitoring & refund processing</li>
                         <li class="list-group-item">🪵 Activity log in Firestore</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">💳 Payment Integration</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Stripe Implementation</h5>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item">🔒 Secure client-side checkout flow</li>
+                        <li class="list-group-item">📝 Order tracking with Firestore</li>
+                        <li class="list-group-item">🔄 Webhook for payment status updates</li>
+                        <li class="list-group-item">🧪 Test mode with dummy cards</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5>Payment Features</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item">💵 Multiple currency support</li>
+                        <li class="list-group-item">📊 Sales analytics dashboard</li>
+                        <li class="list-group-item">🔄 Refund processing</li>
+                        <li class="list-group-item">📄 Receipt generation</li>
                     </ul>
                 </div>
             </div>
@@ -128,9 +158,10 @@
         <section class="section">
             <h2 class="section-title">🚀 Deployment Journey</h2>
             <ul class="list-group mb-3">
-                <li class="list-group-item">✅ Local testing of all modules (frontend + backend)</li>
+                <li class="list-group-item">✅ Local testing of all modules (frontend + backend + payments)</li>
                 <li class="list-group-item">⚠️ Railway: CI/CD failures and broken URL issues</li>
                 <li class="list-group-item">✅ Dockerized backend locally for testing</li>
+                <li class="list-group-item">✅ Stripe webhook endpoint configuration</li>
                 <li class="list-group-item">✅ Final deployment on <strong>Google Cloud Compute</strong> with static IP +
                     firewall config</li>
                 <li class="list-group-item">✅ Frontend + Admin hosted via Vercel</li>
@@ -140,10 +171,15 @@
         <section class="section">
             <h2 class="section-title">🗓️ 5-Day MVP Timeline</h2>
             <ul class="timeline list-unstyled">
-                <li><strong>Day 1:</strong> Project setup, Firebase Auth, planning, rough documentation</li>
-                <li><strong>Day 2-3:</strong> Full frontend, backend, admin dashboard, product CRUD</li>
-                <li><strong>Day 4:</strong> UI/UX fixes, toast feedback, Cloudinary integration</li>
-                <li><strong>Day 5:</strong> Docker testing, deployment attempts, final deploy to Google Cloud</li>
+                <li><strong>Day 1:</strong> Project setup, Firebase Auth, planning, and initial Stripe configuration
+                </li>
+                <li><strong>Day 2:</strong> Core frontend development, basic product CRUD, and shopping cart with Stripe
+                    elements</li>
+                <li><strong>Day 3:</strong> Backend API, admin dashboard, and payment webhook integration</li>
+                <li><strong>Day 4:</strong> Complete checkout flow, UI polish, Cloudinary integration, and transaction
+                    logging</li>
+                <li><strong>Day 5:</strong> Deployment preparation, testing (including payment test mode), and final
+                    deploy to Google Cloud</li>
             </ul>
         </section>
 
@@ -153,35 +189,25 @@
                 <pre>
 /dp-store
 ├── /frontend (Next.js - user)
+│   ├── /components/checkout (Stripe components)
 ├── /admin (Next.js - admin dashboard)
+│   ├── /components/transactions (Payment views)
 ├── /backend (Express + TypeScript)
 │   ├── /routes
+│   │   ├── paymentRoutes.ts (Stripe webhooks)
 │   └── server.ts
 </pre>
             </div>
         </section>
-        <!-- 
-        <section class="section">
-            <h2 class="section-title">🙌 Final Note</h2>
-            <p>
-            <ul>
-                <li>The project was started in the intention to submint for internship where it was asked to create 
-                    a e-commerce side just using HTML, JS and JQuery. I took this an advantage and plan to crate a website as a
-                    modern website like ebay,amazon. I had an interested to learn Next js where erly time i used to do project with
-                    react js. 
-                    so I started as beginner to the projet. 
-                    the tech that are used here mentioned very clerarl
-                    The most part which made me to
 
-             
-            </ul>
-            </p>
-        </section> -->
         <section class="section">
             <h2 class="section-title">🙌 Final Note</h2>
             <p>
-                This MVP project demonstrates full-stack architecture, deployment challenges, admin tooling, UI polish,
-                and async communication skills.
+                This MVP project demonstrates full-stack architecture with secure payment processing, deployment
+                challenges,
+                admin tooling, UI polish, and async communication skills. The Stripe integration provides a
+                production-ready
+                payment solution with test mode capabilities during development.
             </p>
         </section>
     </div>
